@@ -1,12 +1,13 @@
 package com.example.demo1.dataobject;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 
  * @date 2020/01/22
  */
-public class GiteeUser {
+public class GiteeUser implements Serializable {
     /**
      * ID
      */

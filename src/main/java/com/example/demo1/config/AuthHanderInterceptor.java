@@ -5,6 +5,7 @@ import com.example.demo1.pojo.User;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +27,8 @@ public class AuthHanderInterceptor implements HandlerInterceptor {
                    response.sendRedirect("/Login.html");
                    return  false;
                }else {
-                   response.sendRedirect("/LoginSuccess.html");
+                   //返回静态页面的LoginSuccess.html,
+                   response.sendRedirect("LoginSuccess.html");
                }
             }
         }

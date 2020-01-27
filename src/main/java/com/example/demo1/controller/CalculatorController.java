@@ -4,7 +4,10 @@ package com.example.demo1.controller;
 
 
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
@@ -13,10 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@RestController
+@Controller
 
 public class CalculatorController implements HttpSessionListener {
-    public  List<String> ids = new ArrayList<String>();
+    public static List<String> ids = new ArrayList<String>();
 
     @Override
     public void sessionCreated(HttpSessionEvent se) {
@@ -30,8 +33,9 @@ public class CalculatorController implements HttpSessionListener {
         ids.remove(id);
     }
     @RequestMapping(path = "/count")
-    public String  count(){
-        return "当前用户登陆总数是"+ids.size();
+    public ModelAndView count(){
+        ModelAndView view = new ModelAndView("LoginSuccess.html");
+        view.addObject("count",ids.size());
+        return view;
     }
-
 }
