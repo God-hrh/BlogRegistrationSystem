@@ -1,7 +1,6 @@
 package com.example.demo1.config;
 
 import com.example.demo1.dataobject.GiteeUser;
-import com.example.demo1.pojo.User;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;

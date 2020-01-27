@@ -7,14 +7,15 @@
 
 <body>
 <!--从opensignup中拿到值 -->
-
 <form action="/signup"method="post" th:object="${userform}">
     <div>
         <!--th:field="*{username}相当于th:text="${userform.username}"(简写)-->
         昵称<input type="text" name="username" th:field="*{username}">
+        <p th:if="${#fields.hasErrors('username')}"  th:errors="*{username}"></p>
     </div>
     <div>
         密码<input type="text" name="password" th:field="*{password}">
+        <p th:if="${#fields.hasErrors('password')}"  th:errors="*{password}"></p>
     </div>
     <div>
         <button type="submit">注册</button>

@@ -34,7 +34,7 @@ public class CalculatorController implements HttpSessionListener {
     }
     @RequestMapping(path = "/count")
     public ModelAndView count(){
-        ModelAndView view = new ModelAndView("LoginSuccess.html");
+        ModelAndView view = new ModelAndView("LoginSuccess");
         view.addObject("count",ids.size());
         return view;
     }

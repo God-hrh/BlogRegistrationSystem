@@ -1,5 +1,6 @@
 package com.example.demo1.dataobject;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -26,11 +27,13 @@ public class GiteeUser implements Serializable {
     /**
      * 用户名
      */
+    @NotBlank(message = "用户名不能为空哦~")
     private String username;
 
     /**
      * 密码
      */
+    @NotBlank(message = "密码也不能为空哦！")
     private String password;
 
     public Integer getId() {
