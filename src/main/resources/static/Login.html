@@ -1,34 +1,36 @@
 <doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>登陆</title>
-</head>
-<body>
-<form action="/login" method="post">
-    用户名：<input type="text" name="username"><br>
-    密码：<input type="text" name="password"><br>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>登陆</title>
+    </head>
+    <body>
+    <form action="/login" method="post">
+        用户名：<input type="text" name="username"><br>
+        密码：<input type="text" name="password"><br>
+        请输入图片验证码：<input type="text" name = "captcha" >
+        <a href="javascript:reloadCaptcha()" ><img src="/getCaptcha" id="captchaImg"></a> <br>
+        请输入邮箱：<input type="text" name = "email" id="email"><br>
+        请输入邮箱验证码：<input type="text" name = "emailcaptcha" ><input type="button" onclick="sendmail()" value="获取验证码">
+        <br>
+        自动登录<input type="checkbox" value="on" name="autologin"><br>
+        <input type="submit" value="登陆">
+    </form>
 
-
-    自动登录<input type="checkbox" value="on" name="autologin"><br>
-
-<!--    请输入图片验证码：<input type="text" name = "captcha" >-->
-<!--    <a href="javascript:reloadCaptcha()" ><img src="/getCaptcha" id="captchaImg"></a> <br>-->
-<!--    请输入邮箱验证码：<input type="text" name = "emailcaptcha" ><input type="button" onclick="sendmail()" value="获取验证码"><br>-->
-<!--    自动登录<input type="checkbox" value="on" name="autologin"><br>-->
-
-    <input type="submit" value="登陆">
-</form>
-
-<script>
-    function reloadCaptcha() {
-        var captchImg = document.getElementById("captchaImg");
-        captchImg.src="/getCaptcha?t="+(new Date()).getTime();
-    }
-</script>
-</body>
-</html>
+    <script>
+        function reloadCaptcha() {
+            var captchImg = document.getElementById("captchaImg");
+            captchImg.src="/getCaptcha?t="+(new Date()).getTime();
+        }
+        //用fetch不刷新页面异步请求向邮箱发送验证码
+        function sendmail(){
+            var  email = document.getElementById("email").value;
+            fetch("http://localhost:8080/sendmail?email="+email);
+        }
+    </script>
+    </body>
+    </html>
 </doctype>

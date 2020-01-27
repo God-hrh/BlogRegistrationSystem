@@ -11,6 +11,7 @@
     <div>
         <!--th:field="*{username}相当于th:text="${userform.username}"(简写)-->
         昵称<input type="text" name="username" th:field="*{username}">
+      <!-- th:if="${#fields.hasErrors('username')}"里的username是和th:field="*{username}"里的一致-->
         <p th:if="${#fields.hasErrors('username')}"  th:errors="*{username}"></p>
     </div>
     <div>
@@ -18,8 +19,20 @@
         <p th:if="${#fields.hasErrors('password')}"  th:errors="*{password}"></p>
     </div>
     <div>
+        请输入邮箱：<input type="text" name = "email" id="email"><br>
+        请输入邮箱验证码：<input type="text" name = "emailcode" th:field="*{emailcode}" ><input type="button" onclick="sendmail()" value="获取验证码">
+        <p th:if="${#fields.hasErrors('emailcode')}"  th:errors="*{emailcode}"></p>
+    </div>
+    <div>
         <button type="submit">注册</button>
     </div>
 </form>
+<script>
+    //用fetch不刷新页面异步请求向邮箱发送验证码
+    function sendmail(){
+        var  email = document.getElementById("email").value;
+        fetch("http://localhost:8080/sendmail?email="+email);
+    }
+</script>
 </body>
 </html>
