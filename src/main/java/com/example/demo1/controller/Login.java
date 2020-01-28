@@ -62,10 +62,10 @@ public class Login {
 
     @RequestMapping(path = "/exit")
     @ResponseBody
-    public String exit(HttpSession session) {
+    public RedirectView exit(HttpSession session) {
         session.invalidate();
-
-        return "退出成功！";
+        RedirectView view = new RedirectView("/login");
+        return view;
     }
 
     //验证过滤器
